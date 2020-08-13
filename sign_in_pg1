@@ -1,0 +1,150 @@
+<?php
+	session_start();
+	require_once('config.php');
+	if(isset($_POST['login']))
+			{
+				$username=$_POST['username'];
+				$password=$_POST['password'];
+				$query = "select * from user where username='$username' and password='$password' ";
+				//echo $query;
+				$query_run = mysqli_query($con,$query);
+				//echo mysql_num_rows($query_run);
+				if($query_run)
+				{
+					if(mysqli_num_rows($query_run)>0)
+					{
+					$row = mysqli_fetch_array($query_run,MYSQLI_ASSOC);
+					$_SESSION['username'] = $username;
+					$_SESSION['password'] = $password;
+					header("Location:homepage.php");
+					exit();
+					}
+					else
+					{
+						echo '<script type="text/javascript">alert("No such User exists. Invalid Credentials")</script>';
+					}
+				}
+				else
+				{
+					echo '<script type="text/javascript">alert("Database Error")</script>';
+				}
+			}
+			else
+			{
+			}
+?>
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            *{
+                margin: 0px;
+            }
+            body{
+                background-image: url("achriwebapp/What-Models-do-I-Sell-For-3D-Drains-820x360.jpg");
+            }
+            #divmain{
+                background-repeat: no-repeat;
+                background-center: center center;
+                background-size: 100%;
+            }
+            form,fieldset{
+                text-align: center;
+                margin-top: 100px;
+            }
+            #sb1{
+                cursor:pointer;
+                border-radius:20px;
+                width: 100px;
+                height:40px;
+            }
+            #sb1:hover{
+                 background-color: skyblue;
+            }
+            #sb1:active{
+                background-color:green;
+                box-shadow: 0 5px #666;
+                transform: translateY(4px);
+            }
+            #s1{
+                cursor:pointer;
+                border-radius:20px;
+                width: 200px;
+                height:50px;
+                text-align: center;
+            }
+            #s1:hover{
+                opacity: 0.6;
+            }
+            #s2:hover{
+                opacity: 0.6;
+            }
+            #s2{
+                cursor:pointer;
+                border-radius:20px;
+                width: 200px;
+                height:50px;
+                text-align: center;
+            }
+            #mainimg{
+                width:100%;
+                height:500px;
+            }
+            h1{
+                margin-top: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="divmain">
+            <div id="sd1">
+            <center><h1>Welcome Back!</h1></center>
+            <div id="sd2">
+                <center>
+                   <fieldset style="width:500px;">
+                    <legend>
+                        Art is creation 
+                    </legend>
+                    <form action="signin1.php" method="post" >
+                        Username:<input type="text" id="s1" name="username" placeholder="Enter username" required><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        Password:<input type="password" id="s2" name="password" placeholder="enter password" required><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button name="login" id="sb1" style="background-color: lightskyblue"><a href="homepage.php" style="text-decoration: none;">Sign in</a></button>
+                        <a href="signup1.php" style='color:white;'><br>don't have an account?<br>create an account.</a>
+                    </form>
+                </fieldset> 
+                </center>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
